@@ -1,0 +1,15 @@
+{
+  "description": "Loads the prompt-craft always-on rules once at session start (and after /clear or compaction).",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/rules/always-on.md\""
+          }
+        ]
+      }
+    ]
+  }
+}

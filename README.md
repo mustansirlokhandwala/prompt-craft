@@ -33,6 +33,17 @@ Just ask:
 
 The token-budget skill also warns on its own when you paste a lot of text or start a big multi-step task.
 
+## Always on
+
+Skills load only when a request matches them. To apply prompt-craft to **every** prompt, load the short rules in [`rules/always-on.md`](rules/always-on.md) (~250 tokens) into the agent's standing context:
+
+- **Claude Code plugin:** automatic. A `SessionStart` hook loads the rules in every session.
+- **Claude Code manual:** append the rules to `~/.claude/CLAUDE.md`.
+- **Claude.ai:** paste the rules into your profile preferences or a project's instructions.
+- **Antigravity:** append the rules to `~/.gemini/GEMINI.md`, or copy them into `.agents/rules/` and set the rule to Always On.
+
+Step-by-step setup for each tool is in [docs/always-on.md](docs/always-on.md).
+
 Measure files from the command line:
 
 ```bash
