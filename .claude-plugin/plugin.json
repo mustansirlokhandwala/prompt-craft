@@ -1,0 +1,8 @@
+{
+  "name": "prompt-craft",
+  "version": "0.1.0",
+  "description": "Turn weak prompts into clear, token-efficient ones, and get warned before a task blows your token budget.",
+  "author": { "name": "mustansirlokhandwala" },
+  "license": "MIT",
+  "keywords": ["prompt-engineering", "tokens", "skills"]
+}

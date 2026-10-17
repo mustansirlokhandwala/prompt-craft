@@ -1,0 +1,11 @@
+{
+  "name": "prompt-craft",
+  "owner": { "name": "mustansirlokhandwala" },
+  "plugins": [
+    {
+      "name": "prompt-craft",
+      "source": "./",
+      "description": "Prompt improver and token budget skills."
+    }
+  ]
+}
