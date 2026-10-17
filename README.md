@@ -6,6 +6,9 @@ Skills that turn weak prompts into good ones and stop you wasting tokens.
 |---|---|
 | [`prompt-improver`](skills/prompt-improver/SKILL.md) | Finds the real intent, fills the missing pieces, rewrites the prompt for accuracy and efficiency, and explains each change so you learn. |
 | [`token-budget`](skills/token-budget/SKILL.md) | Estimates tokens in and out, warns before a task goes over budget, and suggests cheaper ways to get the same result. |
+| [`idea-shaper`](skills/idea-shaper/SKILL.md) | Turns a rough idea you can't quite explain into a one-page concept and a ready-to-use prompt, one easy question at a time. |
+| [`design-brief`](skills/design-brief/SKILL.md) | Professional-looking results without design skills: offers 3 directions, turns your pick into exact colors, fonts and layout, then checks the result. |
+| [`clear-writer`](skills/clear-writer/SKILL.md) | Turns rough notes or broken English into a short, direct reply that sounds human, not like AI. |
 
 ## Install
 
@@ -30,6 +33,9 @@ Just ask:
 - "Improve this prompt: *write me a blog post about AI*"
 - "/prompt-improver can u fix my code its broken"
 - "How many tokens will this take?" (with files attached)
+- "I have an idea for an app but I can't explain it"
+- "Make me a landing page for my bakery" or "my slides look amateur"
+- "Reply to this client: sorry we're late, can deliver Thursday"
 
 The token-budget skill also warns on its own when you paste a lot of text or start a big multi-step task.
 

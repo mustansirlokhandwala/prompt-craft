@@ -80,6 +80,12 @@ Copy the skills into the workspace:
 mkdir -p .agents/skills && cp -r skills/* .agents/skills/
 ```
 
+To use them in every workspace, install them globally instead. Recent versions read `~/.gemini/config/skills/`. Use symlinks, so a `git pull` updates them:
+
+```bash
+for s in skills/*/; do ln -sfn "$PWD/$s" ~/.gemini/config/skills/; done
+```
+
 Older Antigravity versions use `.agent/` (singular) instead of `.agents/`. The global skills folder has moved between versions, so check **Customizations → Skills** in your version for the path it reads.
 
 ## Tips
