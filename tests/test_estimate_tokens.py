@@ -27,6 +27,13 @@ class EstimateTokensTest(unittest.TestCase):
         finally:
             os.unlink(f.name)
 
+    def test_unreadable_files_are_an_error(self):
+        self.assertEqual(main(["/nonexistent/file.txt"]), 2)
+
+    def test_budget_must_be_positive(self):
+        with self.assertRaises(SystemExit):
+            main(["--budget", "0", __file__])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -22,10 +22,17 @@ def level(tokens, budget):
     return "ok"
 
 
+def positive_int(value):
+    n = int(value)
+    if n <= 0:
+        raise argparse.ArgumentTypeError("budget must be a positive number")
+    return n
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("files", nargs="*", help="files to measure (default: stdin)")
-    p.add_argument("--budget", type=int, default=10_000, help="token budget to compare against (default 10000)")
+    p.add_argument("--budget", type=positive_int, default=10_000, help="token budget to compare against (default 10000)")
     args = p.parse_args(argv)
 
     sources = []
@@ -36,6 +43,13 @@ def main(argv=None):
                     sources.append((path, f.read()))
             except OSError as e:
                 print(f"skip {path}: {e.strerror}", file=sys.stderr)
+        if not sources:
+            print("error: none of the files could be read", file=sys.stderr)
+            return 2
+    elif sys.stdin.isatty():
+        p.print_usage(sys.stderr)
+        print("error: pass files or pipe text in", file=sys.stderr)
+        return 2
     else:
         sources.append(("stdin", sys.stdin.read()))
 
@@ -45,6 +59,7 @@ def main(argv=None):
         total += t
         print(f"{t:>10,}  {name}")
     print(f"{total:>10,}  TOTAL (~est.) vs budget {args.budget:,}: {level(total, args.budget)}")
+    # exit codes: 0 within budget, 1 over budget, 2 usage or read error
     return 1 if total > args.budget else 0
 
 

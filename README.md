@@ -68,6 +68,17 @@ Run the tests:
 python3 -m unittest discover tests
 ```
 
+## Before you use it
+
+- **Token counts are estimates.** Characters ÷ 4 is within about 20% for English text and code. Other languages can use 2–4× more tokens, especially Chinese, Japanese and Korean. Don't use these numbers for billing.
+- **The thresholds are defaults, not your plan's limits.** Prices and limits differ by model and plan. Edit rule 4 in [`rules/always-on.md`](rules/always-on.md) to match yours.
+- **The plugin runs a shell hook.** It only prints the rules file. Read [`hooks/hooks.json`](hooks/hooks.json) before installing, as you should with any plugin.
+- **Always-on costs about 250 tokens per session.** That's the price of the rules staying in context.
+- **Review rewritten prompts.** Guesses marked `[ASSUMED]` may be wrong. Never put passwords, keys or private data into prompts.
+- **Requirements.** The estimator needs Python 3. It only reads files locally and sends nothing anywhere. On Windows, the hook runs through Git Bash, which Claude Code uses there. Antigravity folder paths vary between versions.
+
 ## License
 
-MIT
+MIT. Provided as-is, without warranty.
+
+Not affiliated with or endorsed by Anthropic or Google. Claude, Antigravity and Gemini are trademarks of their respective owners.
