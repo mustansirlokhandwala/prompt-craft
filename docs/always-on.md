@@ -2,7 +2,7 @@
 
 Skills load **on demand**: the model sees each skill's name and description and loads the full instructions only when a request matches. That keeps them cheap, but it means they don't run on every prompt.
 
-To apply prompt-craft to *every* prompt, load the short rules in [`rules/always-on.md`](../rules/always-on.md) (~350 tokens) into the agent's standing context. The rules handle intent, gaps, budget warnings and answer size on every request. They call the full skills only when needed.
+To apply prompt-craft to *every* prompt, load the short rules in [`rules/always-on.md`](../rules/always-on.md) (~300 tokens) into the agent's standing context. The rules handle intent, gaps, budget warnings and answer size on every request. They call the full skills only when needed.
 
 | Tool | Always-on mechanism | Skills location |
 |---|---|---|
@@ -27,7 +27,7 @@ The plugin's [`hooks/hooks.json`](../hooks/hooks.json) runs a `SessionStart` hoo
 
 To turn it off, disable the plugin with `claude plugin disable prompt-craft`.
 
-**Why `SessionStart` and not `UserPromptSubmit`?** Both inject context. `UserPromptSubmit` re-sends the rules with every prompt (~350 tokens × every message). `SessionStart` sends them once and they stay in context. If you find the model forgetting the rules in very long sessions, change `SessionStart` to `UserPromptSubmit` in `hooks/hooks.json`.
+**Why `SessionStart` and not `UserPromptSubmit`?** Both inject context. `UserPromptSubmit` re-sends the rules with every prompt (~300 tokens × every message). `SessionStart` sends them once and they stay in context. If you find the model forgetting the rules in very long sessions, change `SessionStart` to `UserPromptSubmit` in `hooks/hooks.json`.
 
 ### Option B: manual, without the plugin
 

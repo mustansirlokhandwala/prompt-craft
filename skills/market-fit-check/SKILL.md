@@ -1,6 +1,7 @@
 ---
 name: market-fit-check
-description: Checks whether a product, app, feature or component is worth building before any code is written. Market research finds what already exists, the gaps and how to stand out. Data finds who would use it, how many there are, the impact, and whether it serves the 80% or only the 20%. Use when the user is about to build something new, asks "does this exist?", "is this worth building?", "who would use this?", "how do I stand out?", wants competitor, market or user research, or wants to validate an idea with data.
+description: Checks whether a product, app, feature or component is worth building before any code is written. Market research finds what already exists, the gaps and how to stand out. Data finds who would use it, how many there are, the impact, and whether it serves the 80% or only the 20%. Run only when the user explicitly asks for it — by name (/market-fit-check), or by asking for a market-fit check, market research or data validation of an idea. Never start it on your own just because the user is building something; it is slow and costs many tokens.
+disable-model-invocation: true
 ---
 
 # Market Fit Check
