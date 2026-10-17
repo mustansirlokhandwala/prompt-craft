@@ -9,6 +9,7 @@ Skills that turn weak prompts into good ones and stop you wasting tokens.
 | [`idea-shaper`](skills/idea-shaper/SKILL.md) | Turns a rough idea you can't quite explain into a one-page concept and a ready-to-use prompt, one easy question at a time. |
 | [`design-brief`](skills/design-brief/SKILL.md) | Professional-looking results without design skills: offers 3 directions, turns your pick into exact colors, fonts and layout, then checks the result. |
 | [`clear-writer`](skills/clear-writer/SKILL.md) | Turns rough notes or broken English into a short, direct reply that sounds human, not like AI. |
+| [`market-fit-check`](skills/market-fit-check/SKILL.md) | Before you build: finds what already exists and how to stand out, sizes who would use it, and checks whether you're solving for the 80% or the 20%. Ends with a build / rethink verdict, with sources. |
 | [`usecase-tests`](skills/usecase-tests/SKILL.md) | Before code is submitted: writes tests from what the code should do (not what it does), breaks the code on purpose to prove the tests catch bugs, and reports coverage. |
 
 ## Install
@@ -36,13 +37,14 @@ Just ask:
 - "How many tokens will this take?" (with files attached)
 - "I have an idea for an app but I can't explain it"
 - "Make me a landing page for my bakery" or "my slides look amateur"
+- "Is an app for splitting rent between roommates worth building?"
 - "Reply to this client: sorry we're late, can deliver Thursday"
 
 The token-budget skill also warns on its own when you paste a lot of text or start a big multi-step task.
 
 ## Always on
 
-Skills load only when a request matches them. To apply prompt-craft to **every** prompt, load the short rules in [`rules/always-on.md`](rules/always-on.md) (~250 tokens) into the agent's standing context:
+Skills load only when a request matches them. To apply prompt-craft to **every** prompt, load the short rules in [`rules/always-on.md`](rules/always-on.md) (~350 tokens) into the agent's standing context:
 
 - **Claude Code plugin:** automatic. A `SessionStart` hook loads the rules in every session.
 - **Claude Code manual:** append the rules to `~/.claude/CLAUDE.md`.
@@ -86,7 +88,7 @@ coverage run --branch -m unittest discover tests && coverage report -m
 - **Token counts are estimates.** Characters ÷ 4 is within about 20% for English text and code. Other languages can use 2–4× more tokens, especially Chinese, Japanese and Korean. Don't use these numbers for billing.
 - **The thresholds are defaults, not your plan's limits.** Prices and limits differ by model and plan. Edit rule 4 in [`rules/always-on.md`](rules/always-on.md) to match yours.
 - **The plugin runs a shell hook.** It only prints the rules file. Read [`hooks/hooks.json`](hooks/hooks.json) before installing, as you should with any plugin.
-- **Always-on costs about 250 tokens per session.** That's the price of the rules staying in context.
+- **Always-on costs about 350 tokens per session.** That's the price of the rules staying in context.
 - **Review rewritten prompts.** Guesses marked `[ASSUMED]` may be wrong. Never put passwords, keys or private data into prompts.
 - **Requirements.** The estimator needs Python 3. It only reads files locally and sends nothing anywhere. On Windows, the hook runs through Git Bash, which Claude Code uses there. Antigravity folder paths vary between versions.
 
