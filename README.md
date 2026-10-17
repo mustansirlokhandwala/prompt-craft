@@ -9,6 +9,7 @@ Skills that turn weak prompts into good ones and stop you wasting tokens.
 | [`idea-shaper`](skills/idea-shaper/SKILL.md) | Turns a rough idea you can't quite explain into a one-page concept and a ready-to-use prompt, one easy question at a time. |
 | [`design-brief`](skills/design-brief/SKILL.md) | Professional-looking results without design skills: offers 3 directions, turns your pick into exact colors, fonts and layout, then checks the result. |
 | [`clear-writer`](skills/clear-writer/SKILL.md) | Turns rough notes or broken English into a short, direct reply that sounds human, not like AI. |
+| [`usecase-tests`](skills/usecase-tests/SKILL.md) | Before code is submitted: writes tests from what the code should do (not what it does), breaks the code on purpose to prove the tests catch bugs, and reports coverage. |
 
 ## Install
 
@@ -72,6 +73,12 @@ Run the tests:
 
 ```bash
 python3 -m unittest discover tests
+```
+
+With coverage (needs `pip install coverage`):
+
+```bash
+coverage run --branch -m unittest discover tests && coverage report -m
 ```
 
 ## Before you use it
