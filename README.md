@@ -1,6 +1,6 @@
 # prompt-craft
 
-Skills that turn weak prompts into good ones and stop you wasting tokens.
+Skills for working smarter with AI in Claude Code, Claude.ai and Antigravity. Fix weak prompts, budget tokens, shape rough ideas, design well without design skills, write clear replies, test real use cases and check market fit before you build.
 
 | Skill | What it does |
 |---|---|

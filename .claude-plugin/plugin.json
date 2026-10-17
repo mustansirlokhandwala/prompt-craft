@@ -1,8 +1,14 @@
 {
   "name": "prompt-craft",
   "version": "0.3.0",
-  "description": "Turn weak prompts into clear, token-efficient ones, shape rough ideas, check market fit before building, test real use cases, get good design without design skills, and get warned before a task blows your token budget.",
-  "author": { "name": "mustansirlokhandwala" },
+  "description": "Fix weak prompts, budget tokens, shape rough ideas, design well without design skills, write clear replies, test real use cases with coverage, and check market fit before you build.",
+  "author": {
+    "name": "mustansirlokhandwala"
+  },
   "license": "MIT",
-  "keywords": ["prompt-engineering", "tokens", "skills"]
+  "keywords": [
+    "prompt-engineering",
+    "tokens",
+    "skills"
+  ]
 }

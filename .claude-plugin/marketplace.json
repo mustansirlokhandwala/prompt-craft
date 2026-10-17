@@ -5,7 +5,7 @@
     {
       "name": "prompt-craft",
       "source": "./",
-      "description": "Prompt improver and token budget skills."
+      "description": "Seven skills: prompt-improver, token-budget, idea-shaper, design-brief, clear-writer, market-fit-check and usecase-tests."
     }
   ]
 }
