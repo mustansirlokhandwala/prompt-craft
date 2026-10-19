@@ -14,7 +14,30 @@ Skills for working smarter with AI in Claude Code, Claude.ai and Antigravity. Fi
 
 ## Install
 
-**Claude Code (plugin):**
+**One command for Claude Code and Antigravity** (macOS and Linux):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mustansirlokhandwala/prompt-craft/main/install.sh | bash
+```
+
+It sets up every tool it finds:
+- links the skills into `~/.claude/skills/` and Antigravity's skills folder;
+- adds the always-on rules to `~/.claude/CLAUDE.md` and `~/.gemini/GEMINI.md`, inside a marked block, without touching anything else in those files (it backs each file up once first);
+- never replaces a skill of yours that has the same name.
+
+Run the same command again to update. To set up only one tool, add `-s -- --claude` or `-s -- --antigravity` to the end of the command.
+
+**Uninstall:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mustansirlokhandwala/prompt-craft/main/install.sh | bash -s -- --uninstall
+```
+
+This removes only what the installer added. Your own skills and instructions stay.
+
+If you've cloned the repo, run `./install.sh` or `./install.sh --uninstall` from it instead. The installed skills then link to your clone, so a `git pull` updates them.
+
+**Claude Code plugin:** use this instead of the installer, not as well as it, or the rules load twice.
 
 ```bash
 claude plugin marketplace add mustansirlokhandwala/prompt-craft
@@ -24,9 +47,9 @@ claude plugin marketplace add mustansirlokhandwala/prompt-craft
 claude plugin install prompt-craft@prompt-craft
 ```
 
-**Claude Code (manual):** copy the folders in `skills/` into `~/.claude/skills/`.
-
 **Claude.ai:** zip a skill folder (for example `skills/prompt-improver`) and upload it under Settings → Capabilities → Skills.
+
+**Windows:** the installer doesn't support Windows yet. Use the plugin, or follow the manual steps in [docs/always-on.md](docs/always-on.md).
 
 ## Use
 
@@ -46,6 +69,7 @@ The token-budget skill also warns on its own when you paste a lot of text or sta
 
 Skills load only when a request matches them. To apply prompt-craft to **every** prompt, load the short rules in [`rules/always-on.md`](rules/always-on.md) (~300 tokens) into the agent's standing context:
 
+- **Installer:** automatic, for both Claude Code and Antigravity.
 - **Claude Code plugin:** automatic. A `SessionStart` hook loads the rules in every session.
 - **Claude Code manual:** append the rules to `~/.claude/CLAUDE.md`.
 - **Claude.ai:** paste the rules into your profile preferences or a project's instructions.
@@ -71,7 +95,7 @@ python3 skills/token-budget/scripts/estimate_tokens.py notes.md src/*.py --budge
 
 New skills are welcome. Each skill is a folder in `skills/` with a `SKILL.md` (frontmatter `name` and `description`, then instructions). Keep skills short — they cost tokens every time they load.
 
-Run the tests:
+Run the tests (the installer tests use a temporary home folder and never touch your real setup):
 
 ```bash
 python3 -m unittest discover tests

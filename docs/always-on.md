@@ -11,6 +11,10 @@ To apply prompt-craft to *every* prompt, load the short rules in [`rules/always-
 | Claude.ai | Profile preferences or Project instructions | Upload under Settings → Capabilities → Skills |
 | Antigravity | `~/.gemini/GEMINI.md` or `.agents/rules/` (Always On) | `.agents/skills/` |
 
+## Quickest: the installer
+
+One command sets up both Claude Code and Antigravity, including the always-on rules. See [Install in the README](../README.md#install). The sections below are for doing it by hand, or with the Claude Code plugin.
+
 ## Claude Code
 
 ### Option A: install the plugin (automatic)
