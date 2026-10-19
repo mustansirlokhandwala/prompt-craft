@@ -188,7 +188,7 @@ python3 skills/token-budget/scripts/estimate_tokens.py notes.md src/*.py --budge
 
 ## Contributing
 
-New skills are welcome. Each skill is a folder in `skills/` with a `SKILL.md` (frontmatter `name` and `description`, then instructions). Keep skills short — they cost tokens every time they load.
+New skills and fixes are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) for the steps. Every pull request runs the tests on Linux and macOS, and the maintainer reviews it before it merges.
 
 Run the tests (the installer tests use a temporary home folder and never touch your real setup):
 
