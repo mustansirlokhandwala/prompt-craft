@@ -65,6 +65,84 @@ Just ask:
 
 The token-budget skill also warns on its own when you paste a lot of text or start a big multi-step task.
 
+## Before and after
+
+Three real runs, each following the skill's own steps. Token counts come from `skills/token-budget/scripts/estimate_tokens.py` (characters ÷ 4, so they're estimates). In two of the three, the "after" is longer. That's the point: the extra tokens are the details the model would otherwise guess, and a wrong guess costs a whole retry.
+
+### prompt-improver
+
+Before (~7 tokens):
+
+```
+write me a blog post about AI
+```
+
+After (~157 tokens):
+
+```
+Write a blog post for small-business owners about using AI tools day to day. [ASSUMED: audience and angle]
+
+Readers: owners with no technical background. [ASSUMED]
+Cover: 3 tasks AI does well today (drafting emails, summarizing documents, answering common customer questions) and 1 it does badly (exact facts nobody checks).
+Facts: don't invent statistics or quotes. Write [SOURCE NEEDED] where a number would help.
+
+Format:
+- A specific headline, not "The Future of AI"
+- 600-800 words, 3-4 subheadings, short paragraphs
+- End with one step the reader can try this week
+- Plain words, no hype ("revolutionary", "game-changer")
+```
+
+| | Before | After |
+|---|---|---|
+| Prompt | ~7 tokens | ~157 tokens |
+| Answer length | not set, the model picks | 600–800 words |
+
+The prompt costs ~150 more tokens. In return the answer has a set length, a reader and a topic, and you can fix the `[ASSUMED]` lines before you run it instead of after you've read a draft aimed at the wrong reader.
+
+### clear-writer
+
+Before, the user's notes (~42 tokens):
+
+```
+reply to sam from marketing. cant do the slides for monday, im on the audit till wed. can do thursday or maybe priya can help, she did the last deck. dont want sound rude
+```
+
+After, the reply (~42 tokens):
+
+```
+Hi Sam, I can't get the slides done for Monday. I'm on the audit until Wednesday.
+
+I could do them Thursday. If you need them Monday, try Priya. She made the last deck.
+```
+
+Same size in and out: ~42 tokens each, 33 words in the reply. The skill doesn't make the message shorter here. It puts the "no" first, offers both fixes, and keeps it polite without "I hope this finds you well" padding.
+
+### design-brief
+
+Before (~14 tokens):
+
+```
+make me a landing page for my bakery, make it look good
+```
+
+After the user picks direction C ("Warm and human") from the three the skill offers, the brief (~244 tokens):
+
+```
+Create a one-page website for {{bakery name}}, a neighborhood bakery, for locals within walking distance. Goal: they visit this week or order ahead.
+
+Direction: Warm and human. Friendly, handmade, unhurried.
+Palette: background #FBF6EE, text #2B2118, accent #B5562B (buttons and links only), neutrals #E9DFD0, #6F6253.
+Type: headings Fraunces 600, body Inter 17px; scale 14 / 17 / 22 / 30 / 44 / 60.
+Layout: 12-column grid, 8px spacing unit, generous whitespace; focal point is the hero photo with the headline and an "Order ahead" button.
+Imagery: real photos of your own bread and counter in natural light. No stock photos.
+Content: headline "Bread baked this morning, two streets from you."; {{3-5 best sellers with prices}}; {{address, hours, phone}}.
+Avoid: purple-blue gradients, everything in identical cards, centered text everywhere, emoji as bullets, stock-photo clichés, more than 2 fonts.
+Must work on: phones first. [ASSUMED: most visitors find you on Google Maps]
+```
+
+The brief is ~230 tokens longer than the request. What it replaces is the back-and-forth of "make it less generic", where each round regenerates the whole page. Every text color passes the 4.5:1 contrast check against the background (lowest: the accent at 4.5:1), and the `{{...}}` slots are facts only the owner has, so the model can't make them up.
+
 ## Always on
 
 Skills load only when a request matches them. To apply prompt-craft to **every** prompt, load the short rules in [`rules/always-on.md`](rules/always-on.md) (~300 tokens) into the agent's standing context:
