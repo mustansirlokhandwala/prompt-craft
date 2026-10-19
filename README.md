@@ -143,6 +143,23 @@ Must work on: phones first. [ASSUMED: most visitors find you on Google Maps]
 
 The brief is ~230 tokens longer than the request. What it replaces is the back-and-forth of "make it less generic", where each round regenerates the whole page. Every text color passes the 4.5:1 contrast check against the background (lowest: the accent at 4.5:1), and the `{{...}}` slots are facts only the owner has, so the model can't make them up.
 
+## Token footprint
+
+Installed skills aren't free: the agent keeps each skill's name and description in context in every session, and reads the full skill only when a request matches it. Here's what prompt-craft costs, measured with the same estimator:
+
+| What | When it loads | Tokens |
+|---|---|---|
+| Always-on rules | Every session (if you use them) | ~306 |
+| 7 skill names and descriptions | Every session | ~844 |
+| **Standing cost** | **Every session** | **~1,150** |
+| One full skill | Only when a request matches it | ~800–1,700 (prompt-improver ~1,365) |
+
+To check it yourself:
+
+```bash
+python3 skills/token-budget/scripts/estimate_tokens.py rules/always-on.md skills/*/SKILL.md
+```
+
 ## Always on
 
 Skills load only when a request matches them. To apply prompt-craft to **every** prompt, load the short rules in [`rules/always-on.md`](rules/always-on.md) (~300 tokens) into the agent's standing context:
